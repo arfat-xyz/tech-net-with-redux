@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
+import { useAppSelector } from '@/redux/hooks';
 import { IProduct } from '@/types/globalTypes';
 
 import { useState } from 'react';
@@ -14,8 +15,9 @@ export default function Checkout() {
 
   //! Dummy Data
 
-  const products: IProduct[] = [];
-
+  const { products, total: subTotal } = useAppSelector((state) => state.cart);
+  const deliveryCharge = 4.5;
+  const total = subTotal + deliveryCharge;
   //! **
 
   return (
@@ -121,15 +123,15 @@ export default function Checkout() {
           <div className="space-y-2">
             <div className="flex justify-between text-lg">
               <p>Subtotal</p>
-              <p>77.90$</p>
+              <p>{subTotal}$</p>
             </div>
             <div className="flex justify-between text-lg">
               <p>Delivery</p>
-              <p>4.5$</p>
+              <p>{deliveryCharge}$</p>
             </div>
             <div className="flex justify-between text-xl font-bold">
               <p>Total</p>
-              <p>81.95$</p>
+              <p>{total}$</p>
             </div>
             <Button className="w-full">Checkout</Button>
           </div>
