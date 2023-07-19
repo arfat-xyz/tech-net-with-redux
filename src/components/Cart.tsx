@@ -21,14 +21,23 @@ import {
 } from '@/redux/features/cart/cartSlice';
 
 export default function Cart() {
-const { products, total } = useAppSelector((state) => state.cart);
+  const { products, total } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
   return (
     <Sheet>
       <SheetTrigger>
-        <Button variant="ghost">
+        <Button
+          variant="ghost"
+          className="relative inline-flex items-center p-3 text-sm font-medium text-center  rounded-lg  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
           <HiOutlineShoppingCart size="25" />
+
+          {products.length > 0 && (
+            <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">
+              {products.length}
+            </div>
+          )}
         </Button>
       </SheetTrigger>
       <SheetContent className="overflow-auto relative">
