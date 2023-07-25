@@ -4,24 +4,6 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `https://tech-net-server-eight.vercel.app/`,
   }),
-  endpoints: (builder) => ({
-    getProducts: builder.query({
-      query: () => `products`,
-    }),
-    getSigleProduct: builder.query({
-      query: (id) => `product/${id}`,
-    }),
-    postComment: builder.mutation({
-      query: ({ id, data }) => ({
-        url: `comment/${id}`,
-        method: 'POST',
-        body: data,
-      }),
-    }),
-  }),
+  tagTypes: ['COMMENT'],
+  endpoints: () => ({}),
 });
-export const {
-  useGetProductsQuery,
-  useGetSigleProductQuery,
-  usePostCommentMutation,
-} = api;

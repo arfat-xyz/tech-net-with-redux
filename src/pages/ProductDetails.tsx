@@ -1,11 +1,11 @@
 import ProductReview from '@/components/ProductReview';
 import { Button } from '@/components/ui/button';
 import { toast } from '../components/ui/use-toast';
-import { useGetSigleProductQuery } from '@/redux/features/api/apiSlice';
 import { addToCart } from '@/redux/features/cart/cartSlice';
 import { useAppDispatch } from '@/redux/hooks';
 import { IProduct } from '@/types/globalTypes';
 import { useParams } from 'react-router-dom';
+import { useGetSigleProductQuery } from '@/redux/features/products/productApi';
 
 export default function ProductDetails() {
   const { id } = useParams();

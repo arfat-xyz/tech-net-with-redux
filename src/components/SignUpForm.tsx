@@ -14,15 +14,18 @@ type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 interface SignupFormInputs {
   email: string;
   password: string;
+  confirmPassword: string;
 }
 
 export function SignupForm({ className, ...props }: UserAuthFormProps) {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<SignupFormInputs>();
-
+  const password = watch('password');
+  const confirmPassword = watch('confirmPassword');
   const onSubmit = (data: SignupFormInputs) => {
     console.log(data);
   };
@@ -55,14 +58,20 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
             />
             {errors.password && <p>{errors.password.message}</p>}
             <Input
-              id="password"
+              id="confirmPassword"
               placeholder="confirm password"
               type="password"
               autoCapitalize="none"
               autoCorrect="off"
+              {...register('confirmPassword', {
+                required: 'Confirm password is required',
+              })}
             />
+            {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
           </div>
-          <Button>Create Account</Button>
+          <Button disabled={password !== confirmPassword}>
+            Create Account
+          </Button>
         </div>
       </form>
       <div className="relative">

@@ -3,11 +3,13 @@ import logger from 'redux-logger';
 import cartSlice from './features/cart/cartSlice';
 import productSlice from './features/products/productSlice';
 import { api } from './features/api/apiSlice';
+import userSlice from './features/users/userSlice';
 export const store = configureStore({
   reducer: {
     cart: cartSlice,
     product: productSlice,
     [api.reducerPath]: api.reducer,
+    user: userSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(logger, api.middleware),

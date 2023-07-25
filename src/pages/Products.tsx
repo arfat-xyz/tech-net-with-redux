@@ -3,17 +3,15 @@ import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/components/ui/use-toast';
-import { useGetProductsQuery } from '@/redux/features/api/apiSlice';
+import { useGetProductsQuery } from '@/redux/features/products/productApi';
 import {
   setPriceRange,
   toggleState,
 } from '@/redux/features/products/productSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { IProduct } from '@/types/globalTypes';
-import { useEffect, useState } from 'react';
 
 export default function Products() {
-  const [maxValue, setMaxValue] = useState(0);
   // const [data, setData] = useState<IProduct[]>([]);
   // useEffect(() => {
   //   fetch('./data.json')
@@ -29,7 +27,6 @@ export default function Products() {
   // const status = true;
   // const priceRange = 100;
 
-  console.log(maxValue);
   const handleSlider = (value: number[]) => {
     dispatch(setPriceRange(value[0]));
     console.log(value);
