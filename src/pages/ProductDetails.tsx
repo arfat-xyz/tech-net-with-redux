@@ -22,7 +22,7 @@ export default function ProductDetails() {
   //     .then((data) => setData(data));
   // }, []);
   // const product = data?.find((item: IProduct) => item._id === Number(id));
-  const { data: product, isLoading, error } = useGetSigleProductQuery(id);
+  const { data: product } = useGetSigleProductQuery(id);
   const dispatch = useAppDispatch();
   const handleAddProduct = (product: IProduct) => {
     dispatch(addToCart(product));

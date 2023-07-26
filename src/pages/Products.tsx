@@ -2,7 +2,6 @@ import ProductCard from '@/components/ProductCard';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
-import { useToast } from '@/components/ui/use-toast';
 import { useGetProductsQuery } from '@/redux/features/products/productApi';
 import {
   setPriceRange,
@@ -12,20 +11,10 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { IProduct } from '@/types/globalTypes';
 
 export default function Products() {
-  // const [data, setData] = useState<IProduct[]>([]);
-  // useEffect(() => {
-  //   fetch('./data.json')
-  //     .then((res) => res.json())
-  //     .then((data) => setData(data));
-  // }, []);
   const { data, isLoading, error } = useGetProductsQuery(undefined);
-
-  const { toast } = useToast();
-
+  console.log('isLoading and error from Prodcuts', isLoading, error);
   const { priceRange, status } = useAppSelector((state) => state.product);
   const dispatch = useAppDispatch();
-  // const status = true;
-  // const priceRange = 100;
 
   const handleSlider = (value: number[]) => {
     dispatch(setPriceRange(value[0]));
