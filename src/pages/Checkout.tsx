@@ -9,16 +9,17 @@ import { useAppSelector } from '@/redux/hooks';
 import { IProduct } from '@/types/globalTypes';
 
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export default function Checkout() {
   const [scheduled, setScheduled] = useState<boolean>(false);
 
-  //! Dummy Data
+  const location = useLocation();
+  console.log(location.state, 'this is state');
 
   const { products, total: subTotal } = useAppSelector((state) => state.cart);
   const deliveryCharge = 4.5;
   const total = subTotal + deliveryCharge;
-  //! **
 
   return (
     <div className="flex justify-center items-center h-[calc(100vh-80px)] gap-10 text-primary">
